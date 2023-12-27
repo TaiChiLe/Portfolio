@@ -1,4 +1,3 @@
-
 :root {
     --clr-main: #ffff21;
 }
@@ -13,17 +12,21 @@ body {
 
 .nav-link {
     color: white;
-    
+
 }
 
 .nav-pills .nav-link.active {
-    background-color:   black;
+    background-color: black;
     border: 2px solid #ffff21;
 }
 
+.nav-pills a:hover {
+    color: #ffff21;
+}
+
 .btn-primary {
-        background-color:   black;
-        border: 2px solid #ffff21;
+    background-color: black;
+    border: 2px solid #ffff21;
 }
 
 p em {
@@ -63,16 +66,18 @@ p em {
     -o-transition: border .2s ease-in-out;
     transition: border .2s ease-in-out;
 }
+
 img {
     display: block;
     max-width: 100%;
     height: auto;
-  }
+}
+
 .thumbnail img {
     display: block;
     max-width: 100%;
     height: auto;
-  }
+}
 
 .contact-us {
     display: flex;
