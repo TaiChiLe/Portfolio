@@ -14,7 +14,6 @@
     gap: 1rem;
     border-radius: 10px;
     background-image: linear-gradient(to top left, var(rgb(194, 229, 236)) 0%, var(--clr-primary) 100%);
-    /* border: 2px solid var(--clr-main); */
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
