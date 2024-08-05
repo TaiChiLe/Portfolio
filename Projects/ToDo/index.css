@@ -1,0 +1,155 @@
+html {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  background-color: rgb(237, 237, 237);
+}
+
+.header {
+  color: #b83f45;
+  font-size: 80px;
+  font-weight: 200;
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(201, 201, 201);
+  background-color: white;
+}
+
+.text-input {
+  flex: 1;
+  outline: none;
+  border: none;
+  height: 65px;
+  font-size: 24px;
+  margin-left: 65px;
+}
+
+.select-all-image {
+  height: 65px;
+  position: absolute;
+}
+
+.task-container {
+  display: flex;
+  width: 100%;
+  font-size: 24px;
+  gap: 20px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+}
+
+li {
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-right: 1px solid rgb(201, 201, 201);
+  border-left: 1px solid rgb(201, 201, 201);
+  height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-right: 1px solid rgb(201, 201, 201);
+  border-left: 1px solid rgb(201, 201, 201);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: white;
+}
+
+.footer-middle,
+.footer-start,
+.footer-end {
+  width: 33%;
+  margin: 10px;
+}
+
+.footer-middle {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.footer-end {
+  text-align: end;
+}
+
+.select-all:hover,
+.select-active:hover,
+.select-completed:hover {
+  outline: 1px solid red;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.select-all,
+.select-active,
+.select-completed {
+  padding: 2px;
+}
+
+.d-none {
+  display: none;
+}
+
+.footer-end:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.active-select {
+  outline: 1px solid red;
+  border-radius: 2px;
+}
+
+.strike-out>.task-text {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+  color: red;
+}
+
+li:hover>.delete-btn {
+  display: block;
+}
+
+
+.task-text:disabled {
+  background-color: white;
+  border: none;
+  font-size: 20px;
+}
+
+.task-text {
+  background-color: white;
+  font-size: 20px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
