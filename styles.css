@@ -6,12 +6,12 @@
 }
 
 * {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .project-container {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     border-radius: 10px;
     flex-wrap: wrap;
     justify-content: center;
@@ -40,4 +40,12 @@
 .get-qoute:hover,
 .btn-portfolio:hover {
     background-color: var(--clr-primary);
+}
+
+img {
+    transition: 0.5s;
+}
+
+img:hover {
+    transform: scale(1.1);
 }
