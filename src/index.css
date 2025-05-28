@@ -2,7 +2,14 @@
 @import "tailwindcss";
 
 
+
+
 body {
   font-family: "Quicksand", sans-serif;
   background-color: #ecebf0;
+}
+
+body.dark {
+  background-color: #1a1a1a;
+  color: white;
 }
