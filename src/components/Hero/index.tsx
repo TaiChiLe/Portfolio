@@ -6,7 +6,7 @@ export default function Hero() {
     <div className="flex flex-col max-w-200 m-auto h-80 relative">
       {/* Add particles background */}
       <ParticlesBg type="square" bg={false} />
-      <div className="text-center text-5xl font-bold mt-20 absolute ">
+      <div className="text-center text-5xl font-bold mt-0 md:mt-20 absolute ">
         A developer interested in designing systems that change the world.
       </div>
     </div>
