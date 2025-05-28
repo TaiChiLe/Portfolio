@@ -24,7 +24,7 @@ export default function Works() {
         <Image
           preview={false}
           className="rounded-2xl border-2"
-          src="src\assets\quizApp.jpg"
+          src="\Portfolio\assets\quizApp.jpg"
         />
         <div className="w-400">
           <div className="font-bold pb-4">A Quiz App with a timer</div>
@@ -32,7 +32,7 @@ export default function Works() {
             Answer questions with a timer! You can also see the correct answer
             after you answer a question.
           </div>
-          <a href="src\projects\QuizApp\quiz.html" className="underline">
+          <a href="\Portfolio\projects\QuizApp\quiz.html" className="underline">
             See it in action!
           </a>
         </div>
@@ -41,7 +41,7 @@ export default function Works() {
         <Image
           preview={false}
           className="rounded-2xl border-2"
-          src="src\assets\guessNumber.png"
+          src="\Portfolio\assets\guessNumber.png"
         />
         <div className="w-400">
           <div className="font-bold pb-4">Guess My Number Game</div>
@@ -50,7 +50,7 @@ export default function Works() {
             in the least amount of tries!
           </div>
           <a
-            href="src\projects\GuessMyNumber\guessMyNum.html"
+            href="\Portfolio\projects\GuessMyNumber\guessMyNum.html"
             className="underline"
           >
             See it in action!
@@ -61,14 +61,17 @@ export default function Works() {
         <Image
           preview={false}
           className="rounded-2xl border-2"
-          src="src\assets\pigGame.png"
+          src="\Portfolio\assets\pigGame.png"
         />
         <div className="w-400">
           <div className="font-bold pb-4">Pig Game</div>
           <div className="pb-4">
             A fun dice game where you can play against a friend!
           </div>
-          <a href="src\projects\PigGame\pigGame.html" className="underline">
+          <a
+            href="\Portfolio\projects\PigGame\pigGame.html"
+            className="underline"
+          >
             See it in action!
           </a>
         </div>
@@ -77,12 +80,15 @@ export default function Works() {
         <Image
           preview={false}
           className="rounded-2xl border-2"
-          src="src\assets\ProfilePage.jpg"
+          src="\Portfolio\assets\ProfilePage.jpg"
         />
         <div className="w-400">
           <div className="font-bold pb-4">Profile Page</div>
           <div className="pb-4">A simple mock-up of a profile page.</div>
-          <a href="src\projects\Profile\index.html" className="underline">
+          <a
+            href="\Portfolio\projects\Profile\index.html"
+            className="underline"
+          >
             See it in action!
           </a>
         </div>
@@ -91,14 +97,17 @@ export default function Works() {
         <Image
           preview={false}
           className="rounded-2xl border-2"
-          src="src\assets\Vitalogy.png"
+          src="\Portfolio\assets\Vitalogy.png"
         />
         <div className="w-400">
           <div className="font-bold pb-4">Vitalogy</div>
           <div className="pb-4">
             A bootstrap website design submitted as a part of a competition.
           </div>
-          <a href="src\projects\Vitalogy\index.html" className="underline">
+          <a
+            href="\Portfolio\projects\Vitalogy\index.html"
+            className="underline"
+          >
             See it in action!
           </a>
         </div>
