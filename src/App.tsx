@@ -1,8 +1,17 @@
-import './App.css';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Intro from './components/Intro';
+import Works from './components/Works';
 
-import { RouterProvider } from 'react-router-dom';
-import router from './Router.js';
-
-export default function App() {
-  return <RouterProvider router={router} />;
+function App() {
+  return (
+    <>
+      <Header />
+      <Hero />
+      <Intro />
+      <Works />
+    </>
+  );
 }
+
+export default App;
