@@ -8,14 +8,14 @@ export default function Works() {
         <Image
           preview={false}
           className="rounded-2xl border-2"
-          src="src\assets\ToDo.jpg"
+          src="\Portfolio\assets\ToDo.jpg"
         />
         <div className="w-400">
           <div className="font-bold pb-4">A simple ToDo List</div>
           <div className="pb-4">
             Need to make lists and check off items in your to do? I got you!
           </div>
-          <a href="src\projects\ToDo\index.html" className="underline">
+          <a href="\Portfolio\projects\ToDo\index.html" className="underline">
             See it in action!
           </a>
         </div>
