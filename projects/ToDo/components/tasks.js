@@ -12,7 +12,7 @@ class Tasks {
   addTodo(text) {
     let list = this.#container.querySelector('.task-list');
     let newLi = document.createElement('li');
-    newLi.innerHTML = `<div><input class="check-box" type="checkbox"/> <input class="task-text" disabled type="text" value=${text}> </div>
+    newLi.innerHTML = `<div><input class="check-box" type="checkbox"/> <input class="task-text" disabled type="text" value="${text}"> </div>
           <i class="bi bi-file-x delete-btn d-none"></i>`;
     list.appendChild(newLi);
 
