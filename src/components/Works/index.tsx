@@ -8,6 +8,23 @@ export default function Works() {
         <Image
           preview={false}
           className="rounded-2xl border-2"
+          src="\Portfolio\assets\popularOpinion.png"
+        />
+        <div className="w-400">
+          <div className="font-bold pb-4">Social Media Voting App</div>
+          <div className="pb-4">
+            Want a new way to interact with people on social media? This app
+            allows you to create polls and vote on them!
+          </div>
+          <a href="https://taichile.github.io/popop/" className="underline">
+            See it in action!
+          </a>
+        </div>
+      </div>
+      <div className="flex flex-row gap-6 items-center">
+        <Image
+          preview={false}
+          className="rounded-2xl border-2"
           src="\Portfolio\assets\ToDo.jpg"
         />
         <div className="w-400">
