@@ -21,7 +21,7 @@ export default function Works() {
           </a>
         </div>
       </div>
-      <div className="flex flex-row gap-6 items-center">
+      <div className="flex flex-row gap-6 items-center mt-4">
         <Image
           preview={false}
           className="rounded-2xl border-2"
