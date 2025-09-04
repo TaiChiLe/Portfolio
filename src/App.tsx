@@ -1,15 +1,14 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
-import { DndContext, DragOverlay, pointerWithin } from '@dnd-kit/core';
+import { useState, useCallback, useRef, useEffect } from "react";
+import { DndContext, DragOverlay, pointerWithin } from "@dnd-kit/core";
 import type {
   DragStartEvent,
   DragOverEvent,
   DragEndEvent,
-} from '@dnd-kit/core';
-import Name from './components/draggableItem.tsx/Name';
-import DroppableItem from './components/droppableItem/DroppableItem';
-import DroppableArea from './components/droppablearea/Area';
-import PreviewArea from './components/preview/PreviewArea';
-import Occupation from './components/draggableItem.tsx/Occupation';
+} from "@dnd-kit/core";
+import DroppableItem from "./components/droppableItem/DroppableItem";
+import DroppableArea from "./components/droppablearea/Area";
+import PreviewArea from "./components/preview/PreviewArea";
+import Sidebar from "./components/sidebar/Sidebar";
 
 // Type definitions
 interface SidebarItemType {
@@ -33,7 +32,7 @@ interface ModalProps {
 }
 
 // Simple ID generator
-const generateId = (prefix = 'item'): string =>
+const generateId = (prefix = "item"): string =>
   `${prefix}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
 // Simple modal component
@@ -50,13 +49,13 @@ const Modal = ({
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div
         className={`${
-          isDarkMode ? 'bg-gray-800' : 'bg-white'
+          isDarkMode ? "bg-gray-800" : "bg-white"
         } rounded-lg p-6 max-w-md w-full mx-4`}
       >
         <div className="flex justify-between items-center mb-4">
           <h3
             className={`text-lg font-semibold ${
-              isDarkMode ? 'text-white' : 'text-gray-900'
+              isDarkMode ? "text-white" : "text-gray-900"
             }`}
           >
             {title}
@@ -65,8 +64,8 @@ const Modal = ({
             onClick={onClose}
             className={`p-2 rounded transition-colors ${
               isDarkMode
-                ? 'hover:bg-gray-700 text-gray-400'
-                : 'hover:bg-gray-100 text-gray-600'
+                ? "hover:bg-gray-700 text-gray-400"
+                : "hover:bg-gray-100 text-gray-600"
             }`}
           >
             ✕
@@ -86,7 +85,7 @@ function App() {
   const [isValidDrop, setIsValidDrop] = useState<boolean>(true);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-  const [projectName, setProjectName] = useState<string>('');
+  const [projectName, setProjectName] = useState<string>("");
 
   // Modal state
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
@@ -104,8 +103,14 @@ function App() {
 
   // Available items to drag from sidebar
   const sidebarItems: SidebarItemType[] = [
-    { id: 'name-item', label: 'Name' },
-    { id: 'occupation-item', label: 'Occupation' },
+    { id: "name-item", label: "Name" },
+    { id: "occupation-item", label: "Occupation" },
+    { id: "skills-item", label: "Skills" },
+    { id: "contact-item", label: "Contact" },
+    { id: "container-item", label: "Container" },
+    { id: "grid-item", label: "Grid" },
+    { id: "image-item", label: "Image" },
+    { id: "video-item", label: "Video" },
   ];
 
   // Helper function to find item by ID
@@ -168,7 +173,7 @@ function App() {
 
     if (isSidebarItem) {
       // Validate if sidebar item can be dropped here
-      if (over.id === 'main-canvas') {
+      if (over.id === "main-canvas") {
         setIsValidDrop(true);
       } else {
         // Check if dropping on existing item (you can add your own logic)
@@ -185,12 +190,12 @@ function App() {
     setActiveId(null);
     const { active, over } = event;
 
-    console.log('Drag ended:', { activeId: active.id, overId: over?.id });
+    console.log("Drag ended:", { activeId: active.id, overId: over?.id });
 
     if (!over) return;
 
     const isSidebarItem = sidebarItems.some((item) => item.id === active.id);
-    console.log('Is sidebar item:', isSidebarItem);
+    console.log("Is sidebar item:", isSidebarItem);
 
     if (isSidebarItem) {
       // Create new item from sidebar
@@ -198,29 +203,29 @@ function App() {
       const newItem: DroppedItem = {
         id: generateId(),
         type: active.id as string,
-        label: sidebarItem?.label || 'Unknown',
+        label: sidebarItem?.label || "Unknown",
         children: [],
         // Add any other default properties
       };
 
-      console.log('Created new item:', newItem);
+      console.log("Created new item:", newItem);
 
-      if (over.id === 'main-canvas') {
+      if (over.id === "main-canvas") {
         // Drop on canvas
-        console.log('Dropping on main canvas');
+        console.log("Dropping on main canvas");
         setDroppedItems((prev) => {
           const updated = [...prev, newItem];
-          console.log('Updated droppedItems:', updated);
+          console.log("Updated droppedItems:", updated);
           return updated;
         });
       } else {
         // Drop on existing item (you can implement nesting logic here)
-        console.log('Dropping on existing item');
+        console.log("Dropping on existing item");
         setDroppedItems((prev) => [...prev, newItem]);
       }
     } else {
       // Handle moving existing items (you can implement reordering logic here)
-      console.log('Moving existing item:', active.id, 'to:', over.id);
+      console.log("Moving existing item:", active.id, "to:", over.id);
     }
   }
 
@@ -291,7 +296,7 @@ function App() {
       if (isPreviewCollapsed) return;
       isResizingRef.current = true;
       lastYRef.current = e.clientY;
-      document.body.style.userSelect = 'none';
+      document.body.style.userSelect = "none";
     },
     [isPreviewCollapsed]
   );
@@ -299,7 +304,7 @@ function App() {
   const stopResize = useCallback(() => {
     if (isResizingRef.current) {
       isResizingRef.current = false;
-      document.body.style.userSelect = '';
+      document.body.style.userSelect = "";
     }
   }, []);
 
@@ -314,11 +319,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', stopResize);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", stopResize);
     return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', stopResize);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", stopResize);
     };
   }, [onMouseMove, stopResize]);
 
@@ -329,13 +334,13 @@ function App() {
         Math.min(Math.max(h, 120), window.innerHeight - 220)
       );
     };
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   // Debug: Log droppedItems changes
   useEffect(() => {
-    console.log('DroppedItems changed:', droppedItems);
+    console.log("DroppedItems changed:", droppedItems);
   }, [droppedItems]);
 
   return (
@@ -347,15 +352,15 @@ function App() {
     >
       <div
         className={`flex flex-col h-screen w-screen m-0 p-0 overflow-hidden fixed top-0 left-0 ${
-          isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
+          isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
         }`}
       >
         {/* Header */}
         <div
           className={`px-4 py-2 border-b ${
             isDarkMode
-              ? 'border-gray-700 bg-gray-800'
-              : 'border-gray-300 bg-gray-50'
+              ? "border-gray-700 bg-gray-800"
+              : "border-gray-300 bg-gray-50"
           } flex-shrink-0 flex justify-between items-center w-full`}
         >
           <h1 className="m-0 text-2xl font-bold flex-1 justify-start">
@@ -363,18 +368,18 @@ function App() {
           </h1>
 
           <div className="flex items-center gap-3">
-            <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
+            <span className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
               Project Name:
             </span>
             <input
               type="text"
-              value={projectName || 'Portfolio'}
+              value={projectName || "Portfolio"}
               onChange={(e) => setProjectName(e.target.value)}
               placeholder="Untitled Project"
               className={`text-base px-3 py-1 border ${
                 isDarkMode
-                  ? 'border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:ring-blue-500'
-                  : 'border-gray-300 bg-white text-gray-900 focus:ring-blue-400'
+                  ? "border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:ring-blue-500"
+                  : "border-gray-300 bg-white text-gray-900 focus:ring-blue-400"
               } rounded focus:outline-none focus:ring-2 min-w-[200px]`}
             />
           </div>
@@ -390,14 +395,14 @@ function App() {
               />
               <div
                 className={`relative w-11 h-6 rounded-full transition-colors ${
-                  isDarkMode ? 'bg-blue-600' : 'bg-gray-200'
+                  isDarkMode ? "bg-blue-600" : "bg-gray-200"
                 }`}
               >
                 <div
                   className={`absolute top-[2px] left-[2px] ${
-                    isDarkMode ? 'bg-gray-200' : 'bg-white'
+                    isDarkMode ? "bg-gray-200" : "bg-white"
                   } border rounded-full h-5 w-5 transition-transform ${
-                    isDarkMode ? 'translate-x-full' : 'translate-x-0'
+                    isDarkMode ? "translate-x-full" : "translate-x-0"
                   }`}
                 ></div>
               </div>
@@ -420,31 +425,20 @@ function App() {
           style={{ height: `calc(100vh - ${previewHeight + 56}px)` }}
         >
           {/* Sidebar */}
-          <div
-            className={`w-64 min-w-64 p-4 ${
-              isDarkMode
-                ? 'bg-gray-800 border-gray-700'
-                : 'bg-gray-100 border-gray-300'
-            } border-r overflow-x-hidden overflow-y-auto h-full`}
-          >
-            <div className="overflow-hidden">
-              <Name isDarkMode={isDarkMode} isValidDrop={isValidDrop} />
-              <Occupation isDarkMode={isDarkMode} isValidDrop={isValidDrop} />
-            </div>
-          </div>
+          <Sidebar isDarkMode={isDarkMode} isValidDrop={isValidDrop} />
 
           {/* Main Canvas */}
           <div
             className={`flex-1 p-4 overflow-auto h-full w-auto relative ${
-              isDarkMode ? 'bg-gray-900' : 'bg-white'
+              isDarkMode ? "bg-gray-900" : "bg-white"
             }`}
           >
             {/* Floating Toolbar */}
             <div
               className={`sticky top-0 z-10 mb-4 ${
                 isDarkMode
-                  ? 'bg-gray-800/50 border-gray-600'
-                  : 'bg-white/50 border-gray-200'
+                  ? "bg-gray-800/50 border-gray-600"
+                  : "bg-white/50 border-gray-200"
               } backdrop-blur-sm border rounded-lg shadow-lg px-4 py-1.5`}
             >
               <div className="flex items-center gap-2">
@@ -453,8 +447,8 @@ function App() {
                   disabled={selectedIds.size === 0}
                   className={`px-3 py-1.5 text-xs rounded border ${
                     isDarkMode
-                      ? 'bg-gray-700 hover:bg-gray-600 border-gray-600 text-gray-200'
-                      : 'bg-white hover:bg-gray-100 border-gray-300 text-gray-800'
+                      ? "bg-gray-700 hover:bg-gray-600 border-gray-600 text-gray-200"
+                      : "bg-white hover:bg-gray-100 border-gray-300 text-gray-800"
                   } disabled:opacity-40 transition-colors`}
                 >
                   Clear Selection ({selectedIds.size})
@@ -470,7 +464,7 @@ function App() {
               {droppedItems.length === 0 ? (
                 <p
                   className={`text-center text-lg ${
-                    isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                    isDarkMode ? "text-gray-400" : "text-gray-500"
                   } my-10`}
                 >
                   Drag items here to start building!
@@ -500,14 +494,14 @@ function App() {
           <div
             onMouseDown={startResize}
             className={`absolute -top-1 left-0 right-0 h-2 cursor-row-resize group z-20 flex items-center justify-center ${
-              isPreviewCollapsed ? 'pointer-events-none opacity-0' : ''
+              isPreviewCollapsed ? "pointer-events-none opacity-0" : ""
             }`}
           >
             <div
               className={`w-40 h-1 rounded transition-colors ${
                 isDarkMode
-                  ? 'bg-gray-600 group-hover:bg-gray-500'
-                  : 'bg-gray-400 group-hover:bg-gray-600'
+                  ? "bg-gray-600 group-hover:bg-gray-500"
+                  : "bg-gray-400 group-hover:bg-gray-600"
               }`}
             />
           </div>
@@ -529,15 +523,15 @@ function App() {
             className={`p-2.5 my-1 border rounded text-sm shadow-2xl opacity-90 ${
               isValidDrop === false
                 ? isDarkMode
-                  ? 'bg-red-900 border-red-600 text-red-300'
-                  : 'bg-red-50 border-red-300 text-red-700'
+                  ? "bg-red-900 border-red-600 text-red-300"
+                  : "bg-red-50 border-red-300 text-red-700"
                 : isDarkMode
-                ? 'bg-blue-900 border-blue-600 text-blue-200'
-                : 'bg-blue-50 border-blue-300 text-gray-800'
+                ? "bg-blue-900 border-blue-600 text-blue-200"
+                : "bg-blue-50 border-blue-300 text-gray-800"
             }`}
           >
             {sidebarItems.find((item) => item.id === activeId)?.label ||
-              'Dragging...'}
+              "Dragging..."}
           </div>
         ) : null}
       </DragOverlay>
@@ -558,7 +552,7 @@ function App() {
               <label className="block text-sm font-medium mb-1">Label:</label>
               <input
                 type="text"
-                value={editingItem.label || ''}
+                value={editingItem.label || ""}
                 onChange={(e) =>
                   setEditingItem((prev) =>
                     prev ? { ...prev, label: e.target.value } : prev
@@ -566,8 +560,8 @@ function App() {
                 }
                 className={`w-full px-3 py-2 border rounded ${
                   isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white'
-                    : 'bg-white border-gray-300 text-gray-900'
+                    ? "bg-gray-700 border-gray-600 text-white"
+                    : "bg-white border-gray-300 text-gray-900"
                 }`}
               />
             </div>
@@ -579,8 +573,8 @@ function App() {
                 }}
                 className={`px-4 py-2 border rounded transition-colors ${
                   isDarkMode
-                    ? 'border-gray-600 hover:bg-gray-700 text-gray-200'
-                    : 'border-gray-300 hover:bg-gray-50 text-gray-900'
+                    ? "border-gray-600 hover:bg-gray-700 text-gray-200"
+                    : "border-gray-300 hover:bg-gray-50 text-gray-900"
                 }`}
               >
                 Cancel

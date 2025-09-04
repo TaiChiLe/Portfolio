@@ -3,24 +3,21 @@ interface NamePreviewProps {
   name?: string;
 }
 
-export default function NamePreview({
-  isDarkMode = false,
-  name = 'Your Name Here',
-}: NamePreviewProps) {
+export default function NamePreview({ isDarkMode = false }: NamePreviewProps) {
   return (
     <div className="mb-1">
       {/* Preview of rendered HTML output */}
       <div
         className={`p-3 rounded  ${
           isDarkMode
-            ? 'bg-gray-900 border-gray-700'
-            : 'bg-gray-50 border-gray-200'
+            ? "bg-gray-900 border-gray-700"
+            : "bg-gray-50 border-gray-200"
         }`}
       >
         <div className="flex items-center gap-3">
           <div
             className={`p-2 rounded-full ${
-              isDarkMode ? 'bg-gray-700' : 'bg-gray-200'
+              isDarkMode ? "bg-gray-700" : "bg-gray-200"
             }`}
           >
             <svg
@@ -32,7 +29,7 @@ export default function NamePreview({
               strokeLinecap="round"
               strokeLinejoin="round"
               className={`w-6 h-6 ${
-                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                isDarkMode ? "text-gray-400" : "text-gray-600"
               }`}
             >
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -42,14 +39,14 @@ export default function NamePreview({
           <div>
             <h1
               className={`text-2xl font-bold ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
+                isDarkMode ? "text-white" : "text-gray-900"
               }`}
             >
               Tyson
             </h1>
             <p
               className={`text-sm ${
-                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                isDarkMode ? "text-gray-400" : "text-gray-600"
               }`}
             >
               Customer Support Analyst II by Day, Aspiring Developer by Night
