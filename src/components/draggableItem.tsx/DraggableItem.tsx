@@ -1,4 +1,4 @@
-import { useDraggable } from '@dnd-kit/core';
+import { useDraggable } from "@dnd-kit/core";
 
 export interface DraggableItemProps {
   id: string;
@@ -22,47 +22,49 @@ function DraggableItem(props: DraggableItemProps) {
     if (isDragging) {
       return props.isValidDrop === false
         ? props.isDarkMode
-          ? 'bg-red-900 border-red-600'
-          : 'bg-red-50 border-red-300'
+          ? "bg-red-900 border-red-600"
+          : "bg-red-50 border-red-300"
         : props.isDarkMode
-        ? 'bg-blue-900 border-blue-600'
-        : 'bg-blue-50 border-blue-300';
+        ? "bg-blue-900 border-blue-600"
+        : "bg-blue-50 border-blue-300";
     }
-    return props.isDarkMode ? 'bg-gray-700' : 'bg-white';
+    return props.isDarkMode ? "bg-gray-700" : "bg-white";
   };
 
   const getTextColor = () => {
-    return props.isDarkMode ? 'text-gray-200' : 'text-gray-800';
+    return props.isDarkMode ? "text-gray-200" : "text-gray-800";
   };
 
   const getBorderColor = () => {
-    if (isDragging) return '';
-    return props.isDarkMode ? 'border-gray-600' : 'border-gray-300';
+    if (isDragging) return "";
+    return props.isDarkMode ? "border-gray-600" : "border-gray-300";
   };
 
   const getHoverClass = () => {
-    if (isDragging) return '';
+    if (isDragging) return "";
     return props.isDarkMode
-      ? 'hover:shadow-lg hover:border-gray-500'
-      : 'hover:shadow-md';
+      ? "hover:shadow-lg hover:border-gray-500"
+      : "hover:shadow-md";
   };
 
   return (
     <div
       ref={setNodeRef}
       className={`
-        p-2.5 my-1 border rounded cursor-grab select-none text-sm min-w-20 w-full relative
-        flex items-center gap-2 ${getTextColor()}
+        p-3 my-2 border rounded cursor-grab select-none text-sm min-w-20 w-full relative
+        flex items-center gap-2 touch-manipulation ${getTextColor()}
         ${getBackgroundClass()}
         ${
           isDragging
-            ? 'opacity-0 shadow-lg z-[1000]'
+            ? "opacity-0 shadow-lg z-[1000]"
             : `${getBorderColor()} shadow-sm z-[1] ${getHoverClass()}`
         }
-        ${!isDragging ? 'transition-all duration-200 ease-in-out' : ''}
+        ${!isDragging ? "transition-all duration-200 ease-in-out" : ""}
+        ${!isDragging ? "active:scale-[0.98] active:shadow-inner" : ""}
       `}
       style={{
         transform: transformStyle,
+        touchAction: "none", // Prevent default touch behaviors during drag
       }}
       {...listeners}
       {...attributes}
