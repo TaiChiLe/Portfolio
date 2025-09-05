@@ -181,6 +181,30 @@ function App() {
         technologies: ['HTML', 'CSS', 'JavaScript'],
       },
     },
+    {
+      id: 'profile-app',
+      label: 'Profile Page',
+      baseType: 'work-item',
+      projectData: {
+        projectName: 'Profile Page',
+        htmlPath: '/Portfolio/projects/Profile/index.html',
+        description:
+          'A personal profile page showcasing professional information',
+        technologies: ['HTML', 'CSS', 'JavaScript'],
+      },
+    },
+    {
+      id: 'vitalogy-app',
+      label: 'Vitalogy Band',
+      baseType: 'work-item',
+      projectData: {
+        projectName: 'Vitalogy Band Website',
+        htmlPath: '/Portfolio/projects/Vitalogy/index.html',
+        description:
+          'A music band website featuring band members, tours, and gallery',
+        technologies: ['HTML', 'CSS'],
+      },
+    },
   ];
 
   // Helper function to find item by ID
@@ -360,6 +384,19 @@ function App() {
     setSelectedIds(new Set());
   }, []);
 
+  // Fill profile with all sidebar items
+  const fillProfile = useCallback(() => {
+    const newItems: DroppedItem[] = sidebarItems.map((sidebarItem) => ({
+      id: generateId(),
+      type: sidebarItem.baseType || sidebarItem.id,
+      label: sidebarItem.label,
+      children: [],
+      projectData: sidebarItem.projectData,
+    }));
+
+    setDroppedItems(newItems);
+  }, [sidebarItems]);
+
   // Preview panel resize handlers
   const startResize = useCallback(
     (e: React.MouseEvent) => {
@@ -534,6 +571,16 @@ function App() {
                   } disabled:opacity-40 transition-colors`}
                 >
                   Clear Selection ({selectedIds.size})
+                </button>
+                <button
+                  onClick={fillProfile}
+                  className={`px-3 py-1.5 text-xs rounded border ${
+                    isDarkMode
+                      ? 'bg-blue-700 hover:bg-blue-600 border-blue-600 text-white'
+                      : 'bg-blue-500 hover:bg-blue-600 border-blue-400 text-white'
+                  } transition-colors`}
+                >
+                  Fill Profile
                 </button>
               </div>
             </div>

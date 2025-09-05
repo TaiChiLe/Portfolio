@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 interface WorkItemProps {
   isDarkMode: boolean;
@@ -13,16 +13,15 @@ interface WorkItemProps {
 
 const WorkPreview: React.FC<WorkItemProps> = ({
   isDarkMode,
-  projectName = "Guess My Number!",
-  htmlPath = "/projects/GuessMyNumber/guessMyNum.html",
-  description = "An interactive number guessing game with score tracking",
-  technologies = ["HTML", "CSS", "JavaScript"],
+  projectName = 'Guess My Number!',
+  htmlPath = '/projects/GuessMyNumber/guessMyNum.html',
+  description = 'An interactive number guessing game with score tracking',
+  technologies = ['HTML', 'CSS', 'JavaScript'],
   showFullPreview = true,
   githubUrl,
   liveUrl,
 }) => {
   const [previewError, setPreviewError] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     setPreviewError(false);
@@ -34,39 +33,39 @@ const WorkPreview: React.FC<WorkItemProps> = ({
 
   const getTechColor = (tech: string) => {
     const colors = {
-      HTML: "orange",
-      CSS: "blue",
-      JavaScript: "yellow",
-      React: "cyan",
-      TypeScript: "blue",
-      Vue: "green",
-      Angular: "red",
+      HTML: 'orange',
+      CSS: 'blue',
+      JavaScript: 'yellow',
+      React: 'cyan',
+      TypeScript: 'blue',
+      Vue: 'green',
+      Angular: 'red',
     };
-    return colors[tech as keyof typeof colors] || "gray";
+    return colors[tech as keyof typeof colors] || 'gray';
   };
 
   const getTechBadgeClass = (tech: string, isDarkMode: boolean) => {
     const color = getTechColor(tech);
     const colorMap = {
       orange: isDarkMode
-        ? "bg-orange-900 text-orange-300"
-        : "bg-orange-100 text-orange-800",
+        ? 'bg-orange-900 text-orange-300'
+        : 'bg-orange-100 text-orange-800',
       blue: isDarkMode
-        ? "bg-blue-900 text-blue-300"
-        : "bg-blue-100 text-blue-800",
+        ? 'bg-blue-900 text-blue-300'
+        : 'bg-blue-100 text-blue-800',
       yellow: isDarkMode
-        ? "bg-yellow-900 text-yellow-300"
-        : "bg-yellow-100 text-yellow-800",
+        ? 'bg-yellow-900 text-yellow-300'
+        : 'bg-yellow-100 text-yellow-800',
       cyan: isDarkMode
-        ? "bg-cyan-900 text-cyan-300"
-        : "bg-cyan-100 text-cyan-800",
+        ? 'bg-cyan-900 text-cyan-300'
+        : 'bg-cyan-100 text-cyan-800',
       green: isDarkMode
-        ? "bg-green-900 text-green-300"
-        : "bg-green-100 text-green-800",
-      red: isDarkMode ? "bg-red-900 text-red-300" : "bg-red-100 text-red-800",
+        ? 'bg-green-900 text-green-300'
+        : 'bg-green-100 text-green-800',
+      red: isDarkMode ? 'bg-red-900 text-red-300' : 'bg-red-100 text-red-800',
       gray: isDarkMode
-        ? "bg-gray-700 text-gray-300"
-        : "bg-gray-200 text-gray-700",
+        ? 'bg-gray-700 text-gray-300'
+        : 'bg-gray-200 text-gray-700',
     };
     return colorMap[color as keyof typeof colorMap];
   };
@@ -77,15 +76,15 @@ const WorkPreview: React.FC<WorkItemProps> = ({
       <div
         className={`p-4 rounded-t ${
           isDarkMode
-            ? "bg-gray-900 border-gray-600"
-            : "bg-gray-50 border-gray-300"
+            ? 'bg-gray-900 border-gray-600'
+            : 'bg-gray-50 border-gray-300'
         }`}
       >
         <div className="flex items-center gap-3">
           {/* Project Icon */}
           <div
             className={`p-2 rounded-full ${
-              isDarkMode ? "bg-purple-900" : "bg-purple-100"
+              isDarkMode ? 'bg-purple-900' : 'bg-purple-100'
             }`}
           >
             <svg
@@ -97,7 +96,7 @@ const WorkPreview: React.FC<WorkItemProps> = ({
               strokeLinecap="round"
               strokeLinejoin="round"
               className={`w-6 h-6 ${
-                isDarkMode ? "text-purple-400" : "text-purple-600"
+                isDarkMode ? 'text-purple-400' : 'text-purple-600'
               }`}
             >
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -109,7 +108,7 @@ const WorkPreview: React.FC<WorkItemProps> = ({
           <div className="flex-1">
             <h2
               className={`text-xl font-bold ${
-                isDarkMode ? "text-white" : "text-gray-900"
+                isDarkMode ? 'text-white' : 'text-gray-900'
               }`}
             >
               {projectName}
@@ -118,7 +117,7 @@ const WorkPreview: React.FC<WorkItemProps> = ({
             <div className="flex items-center gap-2 mt-1">
               <p
                 className={`text-sm ${
-                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
                 {description}
@@ -150,8 +149,8 @@ const WorkPreview: React.FC<WorkItemProps> = ({
                 rel="noopener noreferrer"
                 className={`p-2 rounded transition-colors ${
                   isDarkMode
-                    ? "bg-gray-700 hover:bg-gray-600 text-gray-300"
-                    : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+                    ? 'bg-gray-700 hover:bg-gray-600 text-gray-300'
+                    : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
                 }`}
                 title="View on GitHub"
               >
@@ -171,8 +170,8 @@ const WorkPreview: React.FC<WorkItemProps> = ({
                 rel="noopener noreferrer"
                 className={`p-2 rounded transition-colors ${
                   isDarkMode
-                    ? "bg-blue-900 hover:bg-blue-800 text-blue-300"
-                    : "bg-blue-100 hover:bg-blue-200 text-blue-700"
+                    ? 'bg-blue-900 hover:bg-blue-800 text-blue-300'
+                    : 'bg-blue-100 hover:bg-blue-200 text-blue-700'
                 }`}
                 title="View Live Demo"
               >
@@ -197,8 +196,8 @@ const WorkPreview: React.FC<WorkItemProps> = ({
           <div
             className={`px-3 py-1 rounded-full text-xs font-medium ${
               isDarkMode
-                ? "bg-green-900 text-green-300"
-                : "bg-green-100 text-green-800"
+                ? 'bg-green-900 text-green-300'
+                : 'bg-green-100 text-green-800'
             }`}
           >
             Live
@@ -211,35 +210,23 @@ const WorkPreview: React.FC<WorkItemProps> = ({
         <div
           className={`rounded-b border-t ${
             isDarkMode
-              ? "bg-gray-800 border-gray-600"
-              : "bg-white border-gray-300"
+              ? 'bg-gray-800 border-gray-600'
+              : 'bg-white border-gray-300'
           }`}
         >
           {/* Preview Controls */}
           <div
             className={`flex items-center justify-between p-3 border-b ${
-              isDarkMode ? "border-gray-600" : "border-gray-200"
+              isDarkMode ? 'border-gray-600' : 'border-gray-200'
             }`}
           >
             <h3
               className={`text-sm font-medium ${
-                isDarkMode ? "text-gray-300" : "text-gray-700"
+                isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}
             >
               Live Preview
             </h3>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className={`px-2 py-1 text-xs rounded transition-colors ${
-                  isDarkMode
-                    ? "bg-gray-700 hover:bg-gray-600 text-gray-300"
-                    : "bg-gray-200 hover:bg-gray-300 text-gray-700"
-                }`}
-              >
-                {isExpanded ? "Collapse" : "Expand"}
-              </button>
-            </div>
           </div>
 
           {/* iframe Preview */}
@@ -247,7 +234,7 @@ const WorkPreview: React.FC<WorkItemProps> = ({
             {previewError ? (
               <div
                 className={`flex items-center justify-center h-full ${
-                  isDarkMode ? "text-gray-400" : "text-gray-500"
+                  isDarkMode ? 'text-gray-400' : 'text-gray-500'
                 }`}
               >
                 <div className="text-center">
@@ -283,8 +270,8 @@ const WorkPreview: React.FC<WorkItemProps> = ({
           <div
             className={`p-3 border-t text-xs ${
               isDarkMode
-                ? "border-gray-600 text-gray-400"
-                : "border-gray-200 text-gray-500"
+                ? 'border-gray-600 text-gray-400'
+                : 'border-gray-200 text-gray-500'
             }`}
           >
             <div className="flex items-center justify-between">

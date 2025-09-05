@@ -79,7 +79,7 @@ export default function CollapsibleCategory({
       {/* Category Content */}
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          expanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          expanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="pt-2 pl-2">{children}</div>
