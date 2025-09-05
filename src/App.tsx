@@ -134,8 +134,6 @@ function App() {
         description:
           "An interactive number guessing game with score tracking and dynamic feedback",
         technologies: ["HTML", "CSS", "JavaScript"],
-        githubUrl: "https://github.com/TaiChiLe/GuessMyNumber",
-        liveUrl: "https://taichile.github.io/GuessMyNumber",
       },
     },
     {
@@ -147,8 +145,6 @@ function App() {
         htmlPath: "/Portfolio/projects/PigGame/pigGame.html",
         description: "A dice-based game where players race to reach 100 points",
         technologies: ["HTML", "CSS", "JavaScript"],
-        githubUrl: "https://github.com/TaiChiLe/PigGame",
-        liveUrl: "https://taichile.github.io/PigGame",
       },
     },
     {
@@ -161,7 +157,6 @@ function App() {
         description:
           "A dynamic quiz application with multiple choice questions",
         technologies: ["HTML", "CSS", "JavaScript"],
-        githubUrl: "https://github.com/TaiChiLe/QuizApp",
       },
     },
     {
@@ -173,7 +168,6 @@ function App() {
         htmlPath: "/Portfolio/projects/TinDog/index.html",
         description: "A Tinder-like app for dogs - responsive landing page",
         technologies: ["HTML", "CSS", "Bootstrap"],
-        githubUrl: "https://github.com/TaiChiLe/TinDog",
       },
     },
     {
@@ -185,7 +179,6 @@ function App() {
         htmlPath: "/Portfolio/projects/ToDo/index.html",
         description: "A task management app with local storage persistence",
         technologies: ["HTML", "CSS", "JavaScript"],
-        githubUrl: "https://github.com/TaiChiLe/TodoApp",
       },
     },
   ];
