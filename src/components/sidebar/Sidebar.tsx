@@ -1,9 +1,9 @@
-import CollapsibleCategory from "./CollapsibleCategory";
-import Name from "../draggableItem.tsx/Name";
-import Occupation from "../draggableItem.tsx/Occupation";
-import Skills from "../draggableItem.tsx/Skills";
-import Contact from "../draggableItem.tsx/Contact";
-import DraggableItem from "../draggableItem.tsx/DraggableItem";
+import CollapsibleCategory from './CollapsibleCategory';
+import Name from '../draggableItem.tsx/Name';
+import Occupation from '../draggableItem.tsx/Occupation';
+import Skills from '../draggableItem.tsx/Skills';
+import Contact from '../draggableItem.tsx/Contact';
+import DraggableItem from '../draggableItem.tsx/DraggableItem';
 
 interface SidebarProps {
   isDarkMode: boolean;
@@ -14,8 +14,8 @@ export default function Sidebar({ isDarkMode, isValidDrop }: SidebarProps) {
   // Project items configuration
   const projectItems = [
     {
-      id: "guess-my-number",
-      label: "Guess My Number",
+      id: 'guess-my-number',
+      label: 'Guess My Number',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,8 +32,8 @@ export default function Sidebar({ isDarkMode, isValidDrop }: SidebarProps) {
       ),
     },
     {
-      id: "pig-game",
-      label: "Pig Game",
+      id: 'pig-game',
+      label: 'Pig Game',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +52,8 @@ export default function Sidebar({ isDarkMode, isValidDrop }: SidebarProps) {
       ),
     },
     {
-      id: "quiz-app",
-      label: "Quiz App",
+      id: 'quiz-app',
+      label: 'Quiz App',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -71,8 +71,8 @@ export default function Sidebar({ isDarkMode, isValidDrop }: SidebarProps) {
       ),
     },
     {
-      id: "tindog",
-      label: "TinDog",
+      id: 'tindog',
+      label: 'TinDog',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -89,8 +89,8 @@ export default function Sidebar({ isDarkMode, isValidDrop }: SidebarProps) {
       ),
     },
     {
-      id: "todo-app",
-      label: "Todo App",
+      id: 'todo-app',
+      label: 'Todo App',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -112,16 +112,16 @@ export default function Sidebar({ isDarkMode, isValidDrop }: SidebarProps) {
     <div
       className={`w-64 min-w-64 p-4 relative ${
         isDarkMode
-          ? "bg-gray-800 border-gray-700"
-          : "bg-gray-100 border-gray-300"
+          ? 'bg-gray-800 border-gray-700'
+          : 'bg-gray-100 border-gray-300'
       } border-r overflow-x-hidden overflow-y-auto h-full`}
     >
       {/* Blue accent border */}
       <div
         className={`absolute top-0 right-0 bottom-0 w-0.5 ${
           isDarkMode
-            ? "bg-gradient-to-b from-transparent via-blue-500 to-transparent"
-            : "bg-gradient-to-b from-transparent via-blue-400 to-transparent"
+            ? 'bg-gradient-to-b from-transparent via-blue-500 to-transparent'
+            : 'bg-gradient-to-b from-transparent via-blue-400 to-transparent'
         }`}
       />
 
@@ -182,7 +182,7 @@ export default function Sidebar({ isDarkMode, isValidDrop }: SidebarProps) {
                 <span className="inline-flex items-center gap-2">
                   <span
                     className={`${
-                      isDarkMode ? "text-gray-400" : "text-gray-600"
+                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
                     }`}
                   >
                     {project.icon}
