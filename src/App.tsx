@@ -14,6 +14,15 @@ import Sidebar from "./components/sidebar/Sidebar";
 interface SidebarItemType {
   id: string;
   label: string;
+  baseType?: string; // The actual component type (e.g., 'work-item')
+  projectData?: {
+    projectName: string;
+    htmlPath: string;
+    description: string;
+    technologies: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+  };
 }
 
 interface DroppedItem {
@@ -21,6 +30,14 @@ interface DroppedItem {
   type: string;
   label: string;
   children: DroppedItem[];
+  projectData?: {
+    projectName: string;
+    htmlPath: string;
+    description: string;
+    technologies: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+  };
 }
 
 interface ModalProps {
@@ -107,10 +124,70 @@ function App() {
     { id: "occupation-item", label: "Occupation" },
     { id: "skills-item", label: "Skills" },
     { id: "contact-item", label: "Contact" },
-    { id: "container-item", label: "Container" },
-    { id: "grid-item", label: "Grid" },
-    { id: "image-item", label: "Image" },
-    { id: "video-item", label: "Video" },
+    {
+      id: "guess-my-number",
+      label: "Guess My Number",
+      baseType: "work-item",
+      projectData: {
+        projectName: "Guess My Number!",
+        htmlPath: "/Portfolio/projects/GuessMyNumber/guessMyNum.html",
+        description:
+          "An interactive number guessing game with score tracking and dynamic feedback",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        githubUrl: "https://github.com/TaiChiLe/GuessMyNumber",
+        liveUrl: "https://taichile.github.io/GuessMyNumber",
+      },
+    },
+    {
+      id: "pig-game",
+      label: "Pig Game",
+      baseType: "work-item",
+      projectData: {
+        projectName: "Pig Game",
+        htmlPath: "/Portfolio/projects/PigGame/pigGame.html",
+        description: "A dice-based game where players race to reach 100 points",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        githubUrl: "https://github.com/TaiChiLe/PigGame",
+        liveUrl: "https://taichile.github.io/PigGame",
+      },
+    },
+    {
+      id: "quiz-app",
+      label: "Quiz App",
+      baseType: "work-item",
+      projectData: {
+        projectName: "Interactive Quiz",
+        htmlPath: "/Portfolio/projects/QuizApp/quiz.html",
+        description:
+          "A dynamic quiz application with multiple choice questions",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        githubUrl: "https://github.com/TaiChiLe/QuizApp",
+      },
+    },
+    {
+      id: "tindog",
+      label: "TinDog",
+      baseType: "work-item",
+      projectData: {
+        projectName: "TinDog",
+        htmlPath: "/Portfolio/projects/TinDog/index.html",
+        description: "A Tinder-like app for dogs - responsive landing page",
+        technologies: ["HTML", "CSS", "Bootstrap"],
+        githubUrl: "https://github.com/TaiChiLe/TinDog",
+      },
+    },
+    {
+      id: "todo-app",
+      label: "Todo App",
+      baseType: "work-item",
+      projectData: {
+        projectName: "Todo Manager",
+        htmlPath: "/Portfolio/projects/ToDo/index.html",
+        description: "A task management app with local storage persistence",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        githubUrl: "https://github.com/TaiChiLe/TodoApp",
+      },
+    },
   ];
 
   // Helper function to find item by ID
@@ -202,10 +279,10 @@ function App() {
       const sidebarItem = sidebarItems.find((item) => item.id === active.id);
       const newItem: DroppedItem = {
         id: generateId(),
-        type: active.id as string,
+        type: sidebarItem?.baseType || (active.id as string), // Use baseType if available, fallback to id
         label: sidebarItem?.label || "Unknown",
         children: [],
-        // Add any other default properties
+        projectData: sidebarItem?.projectData, // Pass along project data
       };
 
       console.log("Created new item:", newItem);
@@ -363,9 +440,17 @@ function App() {
               : "border-gray-300 bg-gray-50"
           } flex-shrink-0 flex justify-between items-center w-full`}
         >
-          <h1 className="m-0 text-2xl font-bold flex-1 justify-start">
-            Tyson Le
-          </h1>
+          <div className="flex-1 justify-start">
+            <h1
+              className={`m-0 text-2xl font-bold inline-block px-4 py-2 rounded-lg ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-slate-800 to-slate-700 text-blue-300 border border-slate-600"
+                  : "bg-gradient-to-r from-slate-100 to-blue-50 text-slate-800 border border-blue-200"
+              }`}
+            >
+              Tyson Le
+            </h1>
+          </div>
 
           <div className="flex items-center gap-3">
             <span className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
@@ -413,7 +498,11 @@ function App() {
             <button
               onClick={() => setDroppedItems([])}
               disabled={droppedItems.length === 0}
-              className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className={`px-3 py-1 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                isDarkMode
+                  ? "bg-slate-700 hover:bg-slate-600 text-slate-300 border border-slate-600"
+                  : "bg-slate-200 hover:bg-slate-300 text-slate-700 border border-slate-300"
+              }`}
             >
               Clear All
             </button>
@@ -526,8 +615,8 @@ function App() {
                   ? "bg-red-900 border-red-600 text-red-300"
                   : "bg-red-50 border-red-300 text-red-700"
                 : isDarkMode
-                ? "bg-blue-900 border-blue-600 text-blue-200"
-                : "bg-blue-50 border-blue-300 text-gray-800"
+                ? "bg-gradient-to-r from-slate-800 to-blue-900 border-blue-500 text-blue-200"
+                : "bg-gradient-to-r from-blue-50 to-slate-100 border-blue-300 text-slate-800"
             }`}
           >
             {sidebarItems.find((item) => item.id === activeId)?.label ||

@@ -2,6 +2,7 @@ import ContactPreview from "./ContactPreview";
 import NamePreview from "./NamePreview";
 import OccupationItem from "./OccupationItem";
 import SkillsPreview from "./SkillsPreview";
+import WorkPreview from "./WorkPreview";
 
 // Type definitions
 interface DroppedItem {
@@ -9,6 +10,14 @@ interface DroppedItem {
   type: string;
   label: string;
   children: DroppedItem[];
+  projectData?: {
+    projectName: string;
+    htmlPath: string;
+    description: string;
+    technologies: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+  };
 }
 
 interface PreviewAreaProps {
@@ -62,6 +71,24 @@ const PreviewArea = ({
             layout="vertical"
           />
         );
+      case "work-item":
+        return (
+          <WorkPreview
+            key={item.id}
+            isDarkMode={isDarkMode}
+            projectName={item.projectData?.projectName || item.label}
+            htmlPath={
+              item.projectData?.htmlPath ||
+              "/projects/GuessMyNumber/guessMyNum.html"
+            }
+            description={item.projectData?.description || "A web project"}
+            technologies={
+              item.projectData?.technologies || ["HTML", "CSS", "JavaScript"]
+            }
+            githubUrl={item.projectData?.githubUrl}
+            liveUrl={item.projectData?.liveUrl}
+          />
+        );
       default:
         return (
           <div
@@ -93,6 +120,15 @@ const PreviewArea = ({
       } border-t`}
       style={{ height: collapsed ? 36 : height }}
     >
+      {/* Blue accent strip */}
+      <div
+        className={`absolute top-0 left-0 right-0 h-1 ${
+          isDarkMode
+            ? "bg-gradient-to-r from-slate-600 via-blue-500 to-slate-600"
+            : "bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200"
+        }`}
+      />
+
       {/* Toggle button */}
       <button
         onClick={onToggleCollapse}
