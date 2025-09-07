@@ -101,7 +101,7 @@ function App() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [isValidDrop, setIsValidDrop] = useState<boolean>(true);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [projectName, setProjectName] = useState<string>('');
 
   // Modal state
