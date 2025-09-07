@@ -41,7 +41,7 @@ const SkillsPreview: React.FC<SkillsPreviewProps> = ({
     },
     {
       name: 'Frontend Technologies',
-      skills: ['React.js', 'Tailwind CSS', 'Bootstrap'],
+      skills: ['React.js', 'Tailwind CSS', 'Bootstrap', 'AntD'],
       color: 'green',
       icon: (
         <svg
@@ -83,7 +83,15 @@ const SkillsPreview: React.FC<SkillsPreviewProps> = ({
     },
     {
       name: 'Tools & DevOps',
-      skills: ['Git', 'Docker', 'VS Code', 'Vite'],
+      skills: [
+        'Git',
+        'Docker',
+        'VS Code',
+        'Vite',
+        'Figma',
+        'Jira',
+        'Confluence',
+      ],
       color: 'orange',
       icon: (
         <svg
