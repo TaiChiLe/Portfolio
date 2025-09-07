@@ -16,7 +16,6 @@ export default function CollapsibleCategory({
   isDarkMode,
   children,
   icon,
-  showCount = true,
   shortcutKey,
 }: CollapsibleCategoryProps) {
   const [expanded, setExpanded] = useState(isExpanded);
@@ -24,9 +23,6 @@ export default function CollapsibleCategory({
   const toggleExpanded = () => {
     setExpanded(!expanded);
   };
-
-  // Count the number of children components
-  const childCount = Children.count(children);
 
   return (
     <div className="mb-3">
@@ -40,24 +36,13 @@ export default function CollapsibleCategory({
         }
         className={`w-full flex items-center justify-between p-2 rounded transition-colors ${
           isDarkMode
-            ? 'bg-[#60a8f9] hover:bg-blue-600 text-white'
-            : 'bg-[#60a8f9] hover:bg-blue-600 text-white'
+            ? 'bg-blue-700 hover:bg-blue-600 text-white'
+            : 'bg-blue-500 hover:bg-blue-600 text-white'
         }`}
       >
         <div className="flex items-center gap-2">
           {icon && <span className="w-4 h-4">{icon}</span>}
           <span className="font-medium text-sm">{title}</span>
-          {showCount && childCount > 0 && (
-            <span
-              className={`px-1.5 py-0.5 text-xs rounded-full ${
-                isDarkMode
-                  ? 'bg-gray-600 text-gray-300'
-                  : 'bg-gray-300 text-gray-700'
-              }`}
-            >
-              {childCount}
-            </span>
-          )}
         </div>
         <svg
           className={`w-4 h-4 transition-transform duration-200 ${

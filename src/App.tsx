@@ -472,10 +472,10 @@ function App() {
         >
           <div className="flex-1 justify-start">
             <h1
-              className={`m-0 text-2xl font-bold inline-block px-4 py-2 rounded-lg ${
+              className={`m-0 text-2xl font-bold inline-block px-14 py-2 rounded-lg ${
                 isDarkMode
                   ? 'bg-gradient-to-r from-slate-800 to-slate-700 text-blue-300 border border-slate-600'
-                  : 'bg-gradient-to-r from-slate-100 to-blue-50 text-slate-800 border border-blue-200'
+                  : 'bg-gradient-to-r from-slate-100 to-blue-200 text-slate-800 border border-blue-200'
               }`}
             >
               Tyson Le
@@ -561,17 +561,6 @@ function App() {
               } backdrop-blur-sm border rounded-lg shadow-lg px-4 py-1.5`}
             >
               <div className="flex items-center gap-2">
-                <button
-                  onClick={clearSelection}
-                  disabled={selectedIds.size === 0}
-                  className={`px-3 py-1.5 text-xs rounded border ${
-                    isDarkMode
-                      ? 'bg-gray-700 hover:bg-gray-600 border-gray-600 text-gray-200'
-                      : 'bg-white hover:bg-gray-100 border-gray-300 text-gray-800'
-                  } disabled:opacity-40 transition-colors`}
-                >
-                  Clear Selection ({selectedIds.size})
-                </button>
                 <button
                   onClick={fillProfile}
                   className={`px-3 py-1.5 text-xs rounded border ${

@@ -30,7 +30,7 @@ const DroppableArea = ({
             : 'border-blue-400 bg-blue-50'
           : isDarkMode
           ? 'border-gray-600 bg-gray-800/20'
-          : 'border-gray-300 bg-gray-50/20'
+          : 'border-gray-300 bg-gray-200/20'
       }`}
     >
       {children}
