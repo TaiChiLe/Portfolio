@@ -28,7 +28,6 @@ export default function DroppableItem({
   // Draggable functionality
   const {
     attributes,
-    listeners,
     setNodeRef: dragRef,
     transform,
     isDragging,

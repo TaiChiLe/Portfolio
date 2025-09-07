@@ -1,4 +1,4 @@
-import { useState, Children } from 'react';
+import { useState } from 'react';
 
 interface CollapsibleCategoryProps {
   title: string;
