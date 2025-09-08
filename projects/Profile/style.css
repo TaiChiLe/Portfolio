@@ -11,6 +11,21 @@ body {
     height: 1200px;
 }
 
+/* Mobile responsiveness for main container */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        padding: 0;
+        justify-content: flex-start;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+}
+
 .header1,
 .header2 {
     position: fixed;
@@ -49,6 +64,37 @@ body {
 .nav-bar-left div:hover {
     background-color: #f5f5f9;
     border-radius: 5px;
+}
+
+/* Mobile responsiveness for navigation */
+@media (max-width: 768px) {
+    .nav-bar-left {
+        gap: 10px;
+        margin-left: 10px;
+        flex-wrap: wrap;
+    }
+
+    .nav-bar-left div {
+        padding: 8px;
+        padding-top: 5px;
+        font-size: 12px;
+    }
+
+    .nav-bar-right {
+        gap: 8px;
+        margin-right: 10px;
+    }
+
+    .nav-bar2-left {
+        gap: 10px;
+        margin-left: 10px;
+        flex-wrap: wrap;
+    }
+
+    .nav-bar2-right {
+        gap: 8px;
+        margin-right: 10px;
+    }
 }
 
 .nav-bar-right svg {
@@ -157,6 +203,20 @@ body {
     position: absolute;
     gap: 30px;
     top: 150px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Mobile responsiveness for profile container */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        gap: 20px;
+        top: 140px;
+        padding: 0 10px;
+        position: relative;
+    }
 }
 
 .profile-secondary {
@@ -231,6 +291,18 @@ body {
     display: flex;
     flex-direction: column;
     gap: 30px
+}
+
+/* Mobile responsiveness for profile main */
+@media (max-width: 768px) {
+    .profile-main {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 600px;
+        margin: 0;
+        border-radius: 10px;
+    }
 }
 
 .profile-secondary-header img {
@@ -388,6 +460,16 @@ body {
     border-bottom: 0.5px solid #eef0f8;
 }
 
+/* Mobile responsiveness for profile main header */
+@media (max-width: 768px) {
+    .profile-main-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+        align-items: flex-start;
+    }
+}
+
 .save-btn {
     border: none;
     background-color: #1bc5bd;
@@ -426,6 +508,32 @@ body {
     width: 500px;
 }
 
+/* Mobile responsiveness for columns */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .column-1 {
+        width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .column-2 {
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .column-3 {
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
 .profile-image {
     height: 120px;
     border: 4px solid white;
@@ -442,6 +550,15 @@ input {
     border-radius: 5px;
     padding-left: 10px;
     font-size: 16px;
+}
+
+/* Mobile responsiveness for inputs */
+@media (max-width: 768px) {
+    input {
+        width: 100%;
+        max-width: 300px;
+        font-size: 16px;
+    }
 }
 
 .company-site-input-footer {
