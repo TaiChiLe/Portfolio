@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import ContactPreview from './ContactPreview';
 import NamePreview from './NamePreview';
 import OccupationItem from './OccupationItem';
@@ -36,6 +37,14 @@ const PreviewArea = ({
   isDarkMode,
   droppedItems,
 }: PreviewAreaProps) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   // Function to render preview based on item type
   const renderItemPreview = (item: DroppedItem) => {
     switch (item.type) {
@@ -130,26 +139,30 @@ const PreviewArea = ({
       />
 
       {/* Toggle button */}
-      <button
-        onClick={onToggleCollapse}
-        className={`absolute top-2 right-2 z-20 px-2 py-1 text-xs rounded mr-3 ${
-          isDarkMode
-            ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
-            : 'bg-white hover:bg-gray-100 text-gray-800'
-        } border transition-colors`}
-      >
-        {collapsed ? 'Show Preview' : 'Hide Preview'}
-      </button>
+      {!isMobile && (
+        <button
+          onClick={onToggleCollapse}
+          className={`absolute top-2 right-2 z-20 px-2 py-1 text-xs rounded mr-3 ${
+            isDarkMode
+              ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
+              : 'bg-white hover:bg-gray-100 text-gray-800'
+          } border transition-colors`}
+        >
+          {collapsed ? 'Show Preview' : 'Hide Preview'}
+        </button>
+      )}
 
       {!collapsed && (
         <div className="p-4 h-full overflow-auto">
-          <h3
-            className={`text-lg font-semibold mb-4 ${
-              isDarkMode ? 'text-white' : 'text-gray-900'
-            }`}
-          >
-            Live Preview
-          </h3>
+          {!isMobile && (
+            <h3
+              className={`text-lg font-semibold mb-4 ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}
+            >
+              Live Preview
+            </h3>
+          )}
 
           {droppedItems.length === 0 ? (
             <div

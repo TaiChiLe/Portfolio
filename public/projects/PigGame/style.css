@@ -11,6 +11,19 @@ html {
   box-sizing: border-box;
 }
 
+/* Mobile-first responsive font sizing */
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 45%;
+  }
+}
+
 body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
@@ -20,6 +33,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
+}
+
+/* Mobile responsive body */
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+    height: 100vh;
+    overflow: hidden;
+  }
 }
 
 /* LAYOUT */
@@ -34,6 +57,26 @@ main {
   border-radius: 9px;
   overflow: hidden;
   display: flex;
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+/* Mobile responsive main container */
+@media (max-width: 768px) {
+  main {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    flex-direction: column;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    margin: 0;
+    border-radius: 0;
+  }
 }
 
 .player {
@@ -43,6 +86,22 @@ main {
   flex-direction: column;
   align-items: center;
   transition: all 0.75s;
+}
+
+/* Mobile responsive players */
+@media (max-width: 768px) {
+  .player {
+    padding: 3rem 2rem;
+    flex: 1;
+    min-height: 40vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .player {
+    padding: 2rem 1rem;
+    min-height: 35vh;
+  }
 }
 
 /* ELEMENTS */
@@ -56,6 +115,20 @@ main {
   margin-bottom: 1rem;
 }
 
+/* Mobile responsive name */
+@media (max-width: 768px) {
+  .name {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: 2rem;
+  }
+}
+
 .score {
   font-size: 8rem;
   font-weight: 300;
@@ -63,12 +136,27 @@ main {
   margin-bottom: auto;
 }
 
+/* Mobile responsive score */
+@media (max-width: 768px) {
+  .score {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .score {
+    font-size: 4rem;
+  }
+}
+
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
 .player--active .name {
   font-weight: 700;
 }
+
 .player--active .score {
   font-weight: 400;
 }
@@ -88,6 +176,21 @@ main {
   transition: all 0.75s;
 }
 
+/* Mobile responsive current score */
+@media (max-width: 768px) {
+  .current {
+    width: 80%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .current {
+    width: 90%;
+    padding: 1rem;
+  }
+}
+
 .current-label {
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -95,8 +198,36 @@ main {
   color: #ddd;
 }
 
+/* Mobile responsive current label */
+@media (max-width: 768px) {
+  .current-label {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .current-label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
 .current-score {
   font-size: 3.5rem;
+}
+
+/* Mobile responsive current score */
+@media (max-width: 768px) {
+  .current-score {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .current-score {
+    font-size: 2rem;
+  }
 }
 
 /* ABSOLUTE POSITIONED ELEMENTS */
@@ -113,11 +244,9 @@ main {
   cursor: pointer;
   font-weight: 400;
   transition: all 0.2s;
-
   background-color: white;
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
-
   padding: 0.7rem 2.5rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
@@ -132,11 +261,13 @@ main {
 .btn--new {
   top: 4rem;
 }
+
 .btn--roll {
   top: 39.3rem;
 }
+
 .btn--hold {
-  top: 46.1rem;
+  top: 30rem;
 }
 
 .btn:active {
@@ -148,13 +279,87 @@ main {
   outline: none;
 }
 
+/* Mobile responsive buttons */
+@media (max-width: 768px) {
+
+  .mb {
+    top: 34.5rem;
+  }
+
+  .btn--new {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+  }
+
+  .mobile-buttons {
+    position: fixed;
+    bottom: 10rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+/* Desktop and mobile visibility */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: inline-block !important;
+  }
+
+  .mobile-buttons {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 769px) {
+
+  .mobile-only,
+  .mobile-buttons {
+    display: none !important;
+  }
+
+  .desktop-only {
+    display: inline-block !important;
+  }
+}
+
 .dice {
-  position:absolute;
+  position: absolute;
   left: 50%;
   top: 16.5rem;
   transform: translateX(-50%);
   height: 10rem;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile responsive dice */
+@media (max-width: 768px) {
+  .dice {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 8rem;
+    z-index: 50;
+  }
+}
+
+@media (max-width: 480px) {
+  .dice {
+    height: 6rem;
+  }
 }
 
 .player--winner {
@@ -164,8 +369,4 @@ main {
 .player--winner .name {
   font-weight: 700;
   color: #c7365f;
-}
-
-.hidden {
-  display: none;
 }

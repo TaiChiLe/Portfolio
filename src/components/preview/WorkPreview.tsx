@@ -246,7 +246,7 @@ const WorkPreview: React.FC<WorkItemProps> = ({
           {/* iframe Preview */}
           <div
             className={`relative overflow-hidden ${
-              isMobile ? 'h-64' : 'h-120'
+              isMobile ? 'h-80' : 'h-120'
             }`}
           >
             {previewError ? (
@@ -304,10 +304,7 @@ const WorkPreview: React.FC<WorkItemProps> = ({
               className={`flex ${
                 isMobile ? 'flex-col gap-1' : 'items-center justify-between'
               }`}
-            >
-              <span>Interactive preview • Click to play</span>
-              <span className="break-all">{htmlPath}</span>
-            </div>
+            ></div>
           </div>
         </div>
       )}

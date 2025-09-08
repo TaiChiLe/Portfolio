@@ -194,6 +194,7 @@ function App() {
         technologies: ['HTML', 'CSS', 'JavaScript'],
       },
     },
+
     {
       id: 'vitalogy-app',
       label: 'Vitalogy Band',
@@ -204,6 +205,18 @@ function App() {
         description:
           'A music band website featuring band members, tours, and gallery',
         technologies: ['HTML', 'CSS'],
+      },
+    },
+    {
+      id: 'moveit-app',
+      label: 'MoveIt',
+      baseType: 'work-item',
+      projectData: {
+        projectName: 'MoveIt Moving Services',
+        htmlPath: '/Portfolio/projects/MoveIt/MoveIt.html',
+        description:
+          'A professional moving company website with responsive design and Bootstrap components',
+        technologies: ['HTML', 'CSS', 'Bootstrap'],
       },
     },
   ];
