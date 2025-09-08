@@ -103,6 +103,7 @@ function App() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [projectName, setProjectName] = useState<string>('');
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   // Modal state
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
@@ -449,6 +450,40 @@ function App() {
   useEffect(() => {
     console.log('DroppedItems changed:', droppedItems);
   }, [droppedItems]);
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Auto-fill profile on mobile
+  useEffect(() => {
+    if (isMobile && droppedItems.length === 0) {
+      fillProfile();
+    }
+  }, [isMobile, droppedItems.length, fillProfile]);
+
+  // Mobile fullscreen preview
+  if (isMobile) {
+    return (
+      <div
+        className={`fixed inset-0 w-screen h-screen ${
+          isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
+        }`}
+      >
+        <PreviewArea
+          height={window.innerHeight}
+          collapsed={false}
+          onToggleCollapse={() => {}}
+          isDarkMode={isDarkMode}
+          droppedItems={droppedItems}
+        />
+      </div>
+    );
+  }
 
   return (
     <DndContext
