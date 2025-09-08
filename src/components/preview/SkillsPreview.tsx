@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SkillCategory {
   name: string;
@@ -18,6 +18,14 @@ const SkillsPreview: React.FC<SkillsPreviewProps> = ({
   showCategories = true,
   layout = 'grid',
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const skillCategories: SkillCategory[] = [
     {
       name: 'Programming Languages',
@@ -242,51 +250,62 @@ const SkillsPreview: React.FC<SkillsPreviewProps> = ({
             : 'bg-gray-50 border-gray-300'
         }`}
       >
-        <div className="flex items-center gap-3">
+        <div className={`flex ${isMobile ? 'flex-col' : 'items-center'} gap-3`}>
+          {/* Top row on mobile: Icon + Title + Badge */}
           <div
-            className={`p-2 rounded-full ${
-              isDarkMode ? 'bg-indigo-900' : 'bg-indigo-100'
+            className={`flex items-center gap-3 ${
+              isMobile ? 'w-full' : 'flex-1'
             }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className={`w-6 h-6 ${
-                isDarkMode ? 'text-indigo-400' : 'text-indigo-600'
+            <div
+              className={`p-2 rounded-full ${
+                isDarkMode ? 'bg-indigo-900' : 'bg-indigo-100'
               }`}
             >
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={`w-6 h-6 ${
+                  isDarkMode ? 'text-indigo-400' : 'text-indigo-600'
+                }`}
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h2
+                className={`text-lg sm:text-xl font-bold ${
+                  isDarkMode ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                Technical Skills
+              </h2>
+            </div>
+            <div
+              className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
+                isDarkMode
+                  ? 'bg-green-900 text-green-300'
+                  : 'bg-green-100 text-green-800'
+              }`}
+            >
+              Intermediate Level
+            </div>
           </div>
-          <div className="flex-1">
-            <h2
-              className={`text-xl font-bold ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              Technical Skills
-            </h2>
+
+          {/* Description - separate line on mobile */}
+          <div className={`${isMobile ? 'w-full pl-12' : 'flex-1'}`}>
             <p
-              className={`text-sm mt-1 ${
+              className={`text-sm ${isMobile ? '' : 'mt-1'} ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-600'
               }`}
             >
               Professional expertise across multiple technologies
             </p>
-          </div>
-          <div
-            className={`px-3 py-1 rounded-full text-xs font-medium ${
-              isDarkMode
-                ? 'bg-green-900 text-green-300'
-                : 'bg-green-100 text-green-800'
-            }`}
-          >
-            Intermediate Level
           </div>
         </div>
       </div>
@@ -294,7 +313,9 @@ const SkillsPreview: React.FC<SkillsPreviewProps> = ({
       {/* Skills Grid */}
       {showCategories ? (
         <div
-          className={`p-4 rounded-b grid gap-4 md:grid-cols-2 lg:grid-cols-3 ${
+          className={`p-4 rounded-b grid gap-4 ${
+            isMobile ? 'grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'
+          } ${
             isDarkMode
               ? 'bg-gray-800 border-gray-600'
               : 'bg-white border-gray-300'
