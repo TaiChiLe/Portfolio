@@ -245,7 +245,9 @@ const WorkPreview: React.FC<WorkItemProps> = ({
 
           {/* iframe Preview */}
           <div
-            className={`relative overflow-hidden ${isMobile ? 'h-64' : 'h-80'}`}
+            className={`relative overflow-hidden ${
+              isMobile ? 'h-64' : 'h-120'
+            }`}
           >
             {previewError ? (
               <div
