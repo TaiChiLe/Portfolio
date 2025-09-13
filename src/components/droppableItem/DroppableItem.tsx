@@ -6,6 +6,25 @@ interface DroppedItem {
   type: string;
   label: string;
   children: DroppedItem[];
+  projectData?: {
+    projectName: string;
+    htmlPath: string;
+    description: string;
+    technologies: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+    appData?: {
+      problem: string;
+      solution: string;
+      status?:
+        | 'In Development'
+        | 'Completed'
+        | 'Paused'
+        | 'Planning'
+        | 'Prototype Completed';
+      images?: string[];
+    };
+  };
 }
 
 interface DroppableItemProps {

@@ -4,6 +4,7 @@ import NamePreview from './NamePreview';
 import OccupationItem from './OccupationItem';
 import SkillsPreview from './SkillsPreview';
 import WorkPreview from './WorkPreview';
+import AppPreview from './AppPreview';
 
 // Type definitions
 interface DroppedItem {
@@ -18,6 +19,17 @@ interface DroppedItem {
     technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
+    appData?: {
+      problem: string;
+      solution: string;
+      status?:
+        | 'In Development'
+        | 'Completed'
+        | 'Paused'
+        | 'Planning'
+        | 'Prototype Completed';
+      images?: string[];
+    };
   };
 }
 
@@ -67,6 +79,7 @@ const PreviewArea = ({
       case 'skills-item':
         return (
           <SkillsPreview
+            key={item.id}
             isDarkMode={isDarkMode}
             showCategories={true}
             layout="grid"
@@ -75,6 +88,7 @@ const PreviewArea = ({
       case 'contact-item':
         return (
           <ContactPreview
+            key={item.id}
             isDarkMode={isDarkMode}
             showLabels={true}
             layout="vertical"
@@ -96,6 +110,27 @@ const PreviewArea = ({
             }
             githubUrl={item.projectData?.githubUrl}
             liveUrl={item.projectData?.liveUrl}
+          />
+        );
+      case 'app-item':
+        return (
+          <AppPreview
+            key={item.id}
+            isDarkMode={isDarkMode}
+            projectName={item.projectData?.projectName || item.label}
+            technologies={
+              item.projectData?.technologies || ['React', 'TypeScript']
+            }
+            problem={
+              item.projectData?.appData?.problem ||
+              'Problem description not available'
+            }
+            solution={
+              item.projectData?.appData?.solution ||
+              'Solution description not available'
+            }
+            githubUrl={item.projectData?.githubUrl}
+            status={item.projectData?.appData?.status || 'In Development'}
           />
         );
       default:

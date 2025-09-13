@@ -48,7 +48,10 @@ export default function NamePreview({ isDarkMode = false }: NamePreviewProps) {
                 isDarkMode ? 'text-gray-400' : 'text-gray-600'
               }`}
             >
-              Customer Support Analyst II by Day, Aspiring Developer by Night
+              Customer Support Analyst II by Day, Aspiring Developer by Night.
+              <br />
+              <br />
+              Passionate about building and learning.
             </p>
           </div>
         </div>

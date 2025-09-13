@@ -14,7 +14,7 @@ import Sidebar from './components/sidebar/Sidebar';
 interface SidebarItemType {
   id: string;
   label: string;
-  baseType?: string; // The actual component type (e.g., 'work-item')
+  baseType?: string; // The actual component type (e.g., 'work-item', 'app-item')
   projectData?: {
     projectName: string;
     htmlPath: string;
@@ -22,6 +22,17 @@ interface SidebarItemType {
     technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
+    appData?: {
+      problem: string;
+      solution: string;
+      status?:
+        | 'In Development'
+        | 'Completed'
+        | 'Paused'
+        | 'Planning'
+        | 'Prototype Completed';
+      images?: string[];
+    };
   };
 }
 
@@ -37,6 +48,17 @@ interface DroppedItem {
     technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
+    appData?: {
+      problem: string;
+      solution: string;
+      status?:
+        | 'In Development'
+        | 'Completed'
+        | 'Paused'
+        | 'Planning'
+        | 'Prototype Completed';
+      images?: string[];
+    };
   };
 }
 
@@ -126,6 +148,47 @@ function App() {
     { id: 'skills-item', label: 'Skills' },
     { id: 'contact-item', label: 'Contact' },
     {
+      id: 'slack-git-api',
+      label: 'Slack GitLab API Integration',
+      baseType: 'app-item',
+      projectData: {
+        projectName: 'Slack GitLab API Integration',
+        htmlPath: '', // No HTML path for app preview
+        description:
+          'A slash command integration for Slack that allows users to fetch and display GitLab repository information directly within Slack channels. Users can type commands like `/gitlab repo <repository-name>` to get details such as stars, forks, issues, and recent commits.',
+        technologies: ['C#'],
+        githubUrl: 'https://github.com/TaiChiLe/git-slack-integration',
+        appData: {
+          problem:
+            'In order to reduce cost and improve team productivity, some users do not require access to a full GitLab interface and would prefer to get repository information directly within Slack.',
+          solution:
+            "Built a C# slash command integration that fetches GitLab repository data using the GitLab API and formats it for display in Slack messages. Implemented OAuth for secure access and ensured compliance with Slack's app guidelines.",
+          status: 'Prototype Completed',
+        },
+      },
+    },
+    {
+      id: 'gitlab-api',
+      label: 'GitLab API Integration',
+      baseType: 'app-item',
+      projectData: {
+        projectName: 'GitLab API Integration',
+        htmlPath: '', // No HTML path for app preview
+        description:
+          'A GitLab API integration that allows users to interact with GitLab repositories directly from a web interface.',
+        technologies: ['Next.js'],
+        githubUrl: 'https://github.com/TaiChiLe/git-lab-integration',
+        appData: {
+          problem:
+            "The issue with the above solution is that comments are important, it's not feasible to see the entire comments section in Slack. Users need a more interactive way to explore repository details.",
+          solution:
+            'Built a Next.js application that interfaces with the GitLab API to provide a user-friendly web interface for exploring repository details, including issues, merge requests, and comments.',
+          status: 'Prototype Completed',
+        },
+      },
+    },
+
+    {
       id: 'guess-my-number',
       label: 'Guess My Number',
       baseType: 'work-item',
@@ -182,19 +245,6 @@ function App() {
         technologies: ['HTML', 'CSS', 'JavaScript'],
       },
     },
-    {
-      id: 'profile-app',
-      label: 'Profile Page',
-      baseType: 'work-item',
-      projectData: {
-        projectName: 'Profile Page',
-        htmlPath: '/Portfolio/projects/Profile/index.html',
-        description:
-          'A personal profile page showcasing professional information',
-        technologies: ['HTML', 'CSS', 'JavaScript'],
-      },
-    },
-
     {
       id: 'vitalogy-app',
       label: 'Vitalogy Band',
@@ -298,12 +348,9 @@ function App() {
     setActiveId(null);
     const { active, over } = event;
 
-    console.log('Drag ended:', { activeId: active.id, overId: over?.id });
-
     if (!over) return;
 
     const isSidebarItem = sidebarItems.some((item) => item.id === active.id);
-    console.log('Is sidebar item:', isSidebarItem);
 
     if (isSidebarItem) {
       // Create new item from sidebar
@@ -316,24 +363,18 @@ function App() {
         projectData: sidebarItem?.projectData, // Pass along project data
       };
 
-      console.log('Created new item:', newItem);
-
       if (over.id === 'main-canvas') {
         // Drop on canvas
-        console.log('Dropping on main canvas');
         setDroppedItems((prev) => {
           const updated = [...prev, newItem];
-          console.log('Updated droppedItems:', updated);
           return updated;
         });
       } else {
         // Drop on existing item (you can implement nesting logic here)
-        console.log('Dropping on existing item');
         setDroppedItems((prev) => [...prev, newItem]);
       }
     } else {
       // Handle moving existing items (you can implement reordering logic here)
-      console.log('Moving existing item:', active.id, 'to:', over.id);
     }
   }
 
@@ -458,11 +499,6 @@ function App() {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
-
-  // Debug: Log droppedItems changes
-  useEffect(() => {
-    console.log('DroppedItems changed:', droppedItems);
-  }, [droppedItems]);
 
   // Mobile detection
   useEffect(() => {

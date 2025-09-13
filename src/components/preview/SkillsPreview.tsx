@@ -70,7 +70,7 @@ const SkillsPreview: React.FC<SkillsPreviewProps> = ({
     },
     {
       name: 'Backend & Database',
-      skills: ['Still learning...'],
+      skills: ['C#', 'Next.js'],
       color: 'purple',
       icon: (
         <svg
